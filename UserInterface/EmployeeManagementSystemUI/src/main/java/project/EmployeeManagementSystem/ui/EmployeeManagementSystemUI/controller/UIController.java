@@ -15,7 +15,7 @@ public class UIController extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/").permitAll().anyRequest().authenticated();
     }
 
-    @RequestMapping(value = "/")
+    @RequestMapping(value = "/home")
     public String loadHomeUI(){
         return "home";
     }
