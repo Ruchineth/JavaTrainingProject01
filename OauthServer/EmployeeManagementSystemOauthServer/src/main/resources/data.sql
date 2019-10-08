@@ -10,10 +10,10 @@ INSERT INTO oauth_client_details (client_id, client_secret, web_server_redirect_
 		('ROLE_manager'),('ROLE_operator');
 
  INSERT INTO permission_role (permission_id, role_id) VALUES
-     (1,1), /*create-> admin */
-     (2,1), /* read admin */
-     (3,1), /* update admin */
-     (4,1), /* delete admin */
+     (1,1), /*create-> manager */
+     (2,1), /* read manager */
+     (3,1), /* update manager */
+     (4,1), /* delete manager */
      (2,2);  /* read operator */
 
  INSERT INTO user (id, username,password, email, enabled, accountNonExpired, credentialsNonExpired, accountNonLocked) VALUES ('1', 'Ruchineth','{bcrypt}$2a$10$4wi00cVNOe6qddUldIGf6ePc1qTYSG4eoPeIlbVKz9/1tv0nXXJb6', 'ruchineth@ruchi.com', '1', '1', '1', '1');
