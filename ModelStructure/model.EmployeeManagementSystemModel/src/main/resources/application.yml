@@ -2,7 +2,7 @@ server:
   port: 8082
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/emsAuthDB?createDatabaseIfNotExist=true
+    url: jdbc:mysql://localhost:3306/emsDataDB?createDatabaseIfNotExist=true
     username: root
     password: 1qaz2wsx@
     driver-class-name: com.mysql.jdbc.Driver
@@ -10,7 +10,7 @@ spring:
     hibernate:
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-      ddl-auto: none
+      ddl-auto: create
   application:
     name: profile
 security:

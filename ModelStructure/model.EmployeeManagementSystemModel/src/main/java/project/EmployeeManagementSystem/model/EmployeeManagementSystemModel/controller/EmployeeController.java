@@ -26,10 +26,10 @@ public class EmployeeController {
         return employeeServiceImp.getAll();
     }
 
-    @RequestMapping(value = "/employee/{id}",method = RequestMethod.GET)
+    @RequestMapping(value = "/employees/{id}",method = RequestMethod.GET)
     @PreAuthorize(("hasAuthority('read_profile')"))
-    public Optional<Employee> getEmployeetById(@PathVariable Integer id){
-        return employeeServiceImp.getStudentById(id);
+    public Employee getEmployeetById(@PathVariable(value = "id") Integer employeeId){
+        return employeeServiceImp.getEmployeetById(employeeId);
     }
 
 }
