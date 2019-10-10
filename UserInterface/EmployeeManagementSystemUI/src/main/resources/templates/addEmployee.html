@@ -22,9 +22,26 @@
 <div class="container">
     <div class="jumbotron">
         <h1>Employee Management System</h1>
-        <a href="http://localhost:8081/lg" class="right">Login</a>
 
     </div>
+    <form name="customers-form" th:action="@{/employees}" method="POST">
+    <div class="form-group">
+        <label for="usrfname">Employee First Name:</label>
+        <input type="text" class="form-control" id="usrfname" name="emFirstName">
+    </div>
+    <div class="form-group">
+        <label for="usrlname">Employee Last Name:</label>
+        <input type="text" class="form-control" id="usrlname" name="emLastName">
+    </div>
+    <div class="form-group">
+        <label for="usrid">Employee Number:</label>
+        <input type="text" class="form-control" id="usrid" name="emNo">
+    </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+
+    </form>
 
 
 

@@ -8,8 +8,14 @@
         h1{
           text-align: center;
         }
-        .right{
-             float:right;
+        .jumbotron {
+               background-color: azure;
+    }
+        .navbar{
+              background-color: darkblue;
+        }
+        .left{
+             float:left;
         }
     </style>
 
@@ -21,12 +27,15 @@
 <body>
 <div class="container">
     <div class="jumbotron">
-        <h1>Employee Management System</h1>
-        <a href="http://localhost:8081/lg" class="right">Login</a>
+        <h1 class="text-center">Employee Management System</h1>
+    </div>
+    <div class="navbar">
+        <a href="http://localhost:8081/employees" class="left">Employee</a>
+        <a href="http://localhost:8081/projects">Project</a>
+        <a href="http://localhost:8081/tasks">Task</a>
+        <a href="">Operation</a>
 
     </div>
-
-
 
 </div>
 

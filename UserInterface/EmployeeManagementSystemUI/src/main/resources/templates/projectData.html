@@ -8,6 +8,12 @@
         h1{
           text-align: center;
         }
+        .jumbotron {
+               background-color: azure;
+    }
+        a{
+        background-color: darkblue;
+        }
         .right{
              float:right;
         }
@@ -16,15 +22,60 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    <title>Home</title>
+    <title>Employee</title>
 </head>
 <body>
 <div class="container">
     <div class="jumbotron">
-        <h1>Employee Management System</h1>
-        <a href="http://localhost:8081/lg" class="right">Login</a>
-
+        <h1 class="text-center">Employee Management System</h1>
     </div>
+
+    <div th:unless="${error==null}">
+        <table class="table">
+            <thead>
+            <tr>
+                <td>Status code</td>
+                <td>Error</td>
+            </tr>
+            </thead>
+
+            <tr>
+                <td><span th:text="${error.statusCode}"></span></td>
+                <td><span th:text="${error.body}"></span></td>
+            </tr>
+        </table>
+    </div>
+
+
+    <div th:if="${error==null}">
+
+        <table class="table">
+
+            <thead>
+            <tr>
+                <td>Project Id</td>
+                <td>Project Name</td>
+
+            </tr>
+            </thead>
+
+            <tbody>
+
+            <tr >
+
+                <td><span th:text="${project.prId}"></span></td>
+                <td><span th:text="${project.prName}"></span></td>
+
+
+
+            </tr>
+
+            </tbody>
+
+        </table>
+    </div>
+
+
 
 
 
