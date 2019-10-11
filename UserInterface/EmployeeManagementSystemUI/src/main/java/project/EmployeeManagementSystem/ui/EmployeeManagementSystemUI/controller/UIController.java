@@ -16,7 +16,10 @@ import org.springframework.web.client.RestTemplate;
 import project.EmployeeManagementSystem.ui.EmployeeManagementSystemUI.config.AccessToken;
 import project.EmployeeManagementSystem.ui.EmployeeManagementSystemUI.entity.Employee;
 import project.EmployeeManagementSystem.ui.EmployeeManagementSystemUI.entity.Project;
+import project.EmployeeManagementSystem.ui.EmployeeManagementSystemUI.entity.ProjectWithTask;
 import project.EmployeeManagementSystem.ui.EmployeeManagementSystemUI.entity.Task;
+
+import java.util.List;
 
 @Controller
 @EnableOAuth2Sso
@@ -140,7 +143,7 @@ public class UIController extends WebSecurityConfigurerAdapter {
         HttpHeaders httpHeaders=new HttpHeaders();
         httpHeaders.add("Authorization", AccessToken.getAccessToken());
         HttpEntity<Project> projectHttpEntity=new HttpEntity<>(project,httpHeaders);
-        System.out.println(project);
+
         try {
             ResponseEntity<Project> responseEntity=restTemplate.exchange("http://localhost:8084/projects", HttpMethod.POST,projectHttpEntity,Project.class);
 
@@ -198,7 +201,7 @@ public class UIController extends WebSecurityConfigurerAdapter {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.add("Authorization", AccessToken.getAccessToken());
         HttpEntity<Task> taskHttpEntity = new HttpEntity<>(task, httpHeaders);
-        System.out.println(task);
+
         try {
             ResponseEntity<Task> responseEntity = restTemplate.exchange("http://localhost:8083/tasks", HttpMethod.POST, taskHttpEntity, Task.class);
 
@@ -209,4 +212,43 @@ public class UIController extends WebSecurityConfigurerAdapter {
         return "redirect:tasks";
 
 
-    }}
+    }
+    @RequestMapping(value = "/projectwithtasks/{id}",method = RequestMethod.GET)
+    public String loadCreateProjectWithTask(Model model, @PathVariable Integer id){
+        HttpHeaders httpHeaders=new HttpHeaders();
+        httpHeaders.add("Authorization", AccessToken.getAccessToken());
+        HttpEntity<Project> projectHttpEntity=new HttpEntity<>(httpHeaders);
+        ResponseEntity<Project> responseEntity=restTemplate.exchange("http://localhost:8084/projects/"+id, HttpMethod.GET,projectHttpEntity,Project.class);
+        model.addAttribute("project",responseEntity.getBody());
+
+
+        HttpEntity<Task> taskHttpEntity=new HttpEntity<>(httpHeaders);
+        ResponseEntity<Task[]> responseEntity01=restTemplate.exchange("http://localhost:8083/tasks", HttpMethod.GET,taskHttpEntity,Task[].class);
+        model.addAttribute("tasks",responseEntity01.getBody());
+
+
+
+        return "addProjectWithTask";
+    }
+    @RequestMapping(value = "/projectwithtask",method = RequestMethod.POST)
+    public String saveProjectWithTask(@RequestParam("taskId") List<Integer> taskId,@RequestParam("projectId") Integer projectId) {
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.add("Authorization", AccessToken.getAccessToken());
+        List<ProjectWithTask> projectWithTask = null;
+
+
+       for(Integer tid:taskId){
+         projectWithTask.add(new ProjectWithTask(projectId,tid));
+       }
+       HttpEntity<List<ProjectWithTask>> projectWithTaskHttpEntity = new HttpEntity<>(projectWithTask, httpHeaders);
+
+
+       ResponseEntity<ProjectWithTask[]> responseEntity = restTemplate.exchange("http://localhost:8085/projectwithtasks", HttpMethod.POST, projectWithTaskHttpEntity, ProjectWithTask[].class);
+
+
+
+
+
+        return "redirect:projects";}
+
+}

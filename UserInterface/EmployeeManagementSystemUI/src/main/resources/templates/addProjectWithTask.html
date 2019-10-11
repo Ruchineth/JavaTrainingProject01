@@ -28,56 +28,30 @@
 <div class="container">
     <div class="jumbotron">
         <h1 class="text-center">Employee Management System</h1>
-        <a th:href="@{/projectwithtasks/{id}(id=${project.prId})}" class="right">Add Task Into Project</a>
-
     </div>
+    <div>
+        <form name="projectwithtask-form" th:action="@{/projectwithtask}" method="POST">
+            <div class="form-group">
+                <label>Project Name: </label>
+                <span th:text="${project.prName}"></span>
+                <input type="hidden" id="projectId" name="projectId" th:value="${project.prId}">
+            </div>
+            <div class="checkbox" th:each="task: ${tasks}">
+                <label>
+                    <input type="checkbox" id="taskId" name="taskId" th:text="${task.taName}" th:value="${task.taId}">
+                    <!--input type="hidden" id="taskId" name="taskId" -->
+                </label>
 
-    <div th:unless="${error==null}">
-        <table class="table">
-            <thead>
-            <tr>
-                <td>Status code</td>
-                <td>Error</td>
-            </tr>
-            </thead>
+            </div>
 
-            <tr>
-                <td><span th:text="${error.statusCode}"></span></td>
-                <td><span th:text="${error.body}"></span></td>
-            </tr>
-        </table>
+
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+
+        </form>
     </div>
-
-
-    <div th:if="${error==null}">
-
-        <table class="table">
-
-            <thead>
-            <tr>
-                <td>Project Id</td>
-                <td>Project Name</td>
-
-            </tr>
-            </thead>
-
-            <tbody>
-
-            <tr >
-
-                <td><span th:text="${project.prId}"></span></td>
-                <td><span th:text="${project.prName}"></span></td>
-
-
-
-            </tr>
-
-            </tbody>
-
-        </table>
-    </div>
-
-
 
 
 
