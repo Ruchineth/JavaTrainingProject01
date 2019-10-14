@@ -50,31 +50,12 @@
 
 
     <div th:if="${error==null}">
+        <label>Project Names</label>
+        <div th:each="project: ${projectName}">
+            <a th:href="@{/projectwithtaskwithemployee/{id}/{id1}(id=${employeeId},id1=${project})}" th:text="${project}" ></a>
 
-        <table class="table">
+        </div>
 
-            <thead>
-            <tr>
-                <td>Project Id</td>
-                <td>Project Name</td>
-
-            </tr>
-            </thead>
-
-            <tbody>
-
-            <tr >
-
-                <td><span th:text="${project.prId}"></span></td>
-                <td><span th:text="${project.prName}"></span></td>
-
-
-
-            </tr>
-
-            </tbody>
-
-        </table>
     </div>
 
 

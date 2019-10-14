@@ -5,28 +5,47 @@ import org.springframework.stereotype.Service;
 import project.EmployeeManagementSystem.operationservice.entity.ProjectWithTask;
 import project.EmployeeManagementSystem.operationservice.repository.ProjectWithTaskRepository;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ProjectWithTaskServiceImp implements ProjectWithTaskService {
     @Autowired
     ProjectWithTaskRepository projectWithTaskRepository;
-    public ProjectWithTask save(ProjectWithTask projectWithTask){
 
-        return projectWithTaskRepository.save(projectWithTask);
-    }
-   /* public List<Task> getAll(){
-        return taskRepository.findAll();
-    }
-    public Task getTaskById(Integer id){
+    public List<ProjectWithTask> saveAll(List<ProjectWithTask> projectWithTask){
 
-        Optional<Task> task = taskRepository.findById(id);
-        if (task.isPresent()) {
-            return task.get();
-        } else {
-            return null;
+        return projectWithTaskRepository.saveAll(projectWithTask);
+    }
+
+    @Override
+    public List<String> findByEmployeeId(Integer employeeId) {
+        List<String> employeeProjects= new ArrayList<>();
+        List<ProjectWithTask> projectWithTasks=projectWithTaskRepository.findAll();
+        for (ProjectWithTask projectWithTask:projectWithTasks
+             ) {
+            if (projectWithTask.getEmployeeId()==employeeId){
+                employeeProjects.add(projectWithTask.getProjectName());
+            }
+
         }
+        return employeeProjects;
     }
-*/
+    public List<String> findTaskByEmployeeProject(Integer employeeId,String projectName){
+        List<String> employeeProjectsTask= new ArrayList<>();
+        List<ProjectWithTask> projectWithTasks=projectWithTaskRepository.findAll();
+        for (ProjectWithTask projectWithTask:projectWithTasks) {
+//            if (projectWithTask.getEmployeeId()==employeeId && projectWithTask.getProjectName()==projectName){
+//
+//                    employeeProjectsTask.add(projectWithTask.getTaskName());}
+            if (projectWithTask.getEmployeeId()==employeeId && projectWithTask.getProjectName().equals(projectName)){
+
+                employeeProjectsTask.add(projectWithTask.getTaskName());}
+
+
+        }
+        return employeeProjectsTask;
+
+    }
+
 }

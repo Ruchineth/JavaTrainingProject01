@@ -22,7 +22,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    <title>Employee</title>
+    <title>Employee Task</title>
 </head>
 <body>
 <div class="container">
@@ -50,31 +50,11 @@
 
 
     <div th:if="${error==null}">
+        <label>Project Task</label>
+        <div th:each="task: ${taskName}">
+            <span th:text="${task}"></span>
+        </div>
 
-        <table class="table">
-
-            <thead>
-            <tr>
-                <td>Project Id</td>
-                <td>Project Name</td>
-
-            </tr>
-            </thead>
-
-            <tbody>
-
-            <tr >
-
-                <td><span th:text="${project.prId}"></span></td>
-                <td><span th:text="${project.prName}"></span></td>
-
-
-
-            </tr>
-
-            </tbody>
-
-        </table>
     </div>
 
 

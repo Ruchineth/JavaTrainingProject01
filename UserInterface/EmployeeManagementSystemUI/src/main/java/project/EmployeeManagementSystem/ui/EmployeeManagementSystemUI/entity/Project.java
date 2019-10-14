@@ -6,11 +6,10 @@ import java.util.List;
 @Entity
 public class Project {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer prId;
     String prName;
-    @OneToMany(mappedBy = "project",fetch = FetchType.EAGER,cascade = CascadeType.ALL)
-    List<Task> task;
+
 
     public Integer getPrId() {
         return prId;
@@ -28,11 +27,5 @@ public class Project {
         this.prName = prName;
     }
 
-    public List<Task> getTask() {
-        return task;
-    }
 
-    public void setTask(List<Task> task) {
-        this.task = task;
-    }
 }

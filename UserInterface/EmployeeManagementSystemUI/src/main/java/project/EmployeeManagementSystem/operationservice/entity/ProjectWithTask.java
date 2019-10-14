@@ -1,8 +1,6 @@
-package project.EmployeeManagementSystem.ui.EmployeeManagementSystemUI.entity;
+package project.EmployeeManagementSystem.operationservice.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.IdClass;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
@@ -14,33 +12,6 @@ public class ProjectWithTask implements Serializable {
     public Integer projectId;
     @Id
     public Integer taskId;
-
-    String projectName;
-    String taskName;
-
-    public String getProjectName() {
-        return projectName;
-    }
-
-    public void setProjectName(String projectName) {
-        this.projectName = projectName;
-    }
-
-    public String getTaskName() {
-        return taskName;
-    }
-
-    public void setTaskName(String taskName) {
-        this.taskName = taskName;
-    }
-
-    public ProjectWithTask(Integer employeeId, Integer projectId, Integer taskId,String projectName,String taskName) {
-        this.employeeId = employeeId;
-        this.projectId = projectId;
-        this.taskId = taskId;
-        this.projectName=projectName;
-        this.taskName=taskName;
-    }
 
     public Integer getEmployeeId() {
         return employeeId;

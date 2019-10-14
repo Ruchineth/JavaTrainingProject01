@@ -22,9 +22,7 @@ public class Employee {
         this.emNo = emNo;
     }
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "EmployeeProject", joinColumns = @JoinColumn(name = "emId", referencedColumnName = "emId"), inverseJoinColumns = @JoinColumn(name = "prId", referencedColumnName = "prId"))
-    List<Project> project;
+
 
     public Integer getEmId() {
         return emId;
@@ -50,11 +48,5 @@ public class Employee {
         this.emLastName = emLastName;
     }
 
-    public List<Project> getProject() {
-        return project;
-    }
 
-    public void setProject(List<Project> project) {
-        this.project = project;
-    }
 }

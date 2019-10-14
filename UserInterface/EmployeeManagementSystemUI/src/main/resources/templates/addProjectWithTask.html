@@ -31,15 +31,26 @@
     </div>
     <div>
         <form name="projectwithtask-form" th:action="@{/projectwithtask}" method="POST">
-            <div class="form-group">
+            <!--div class="form-group">
                 <label>Project Name: </label>
                 <span th:text="${project.prName}"></span>
                 <input type="hidden" id="projectId" name="projectId" th:value="${project.prId}">
+            </div-->
+            <div class="dropdown" >
+                <select name="employeeId">
+                    <option th:each="employee : ${employees}" th:value="${employee.emId}" th:text="${employee.emFirstName}"></option>
+                </select>
+
+            </div>
+            <div class="dropdown">
+                <select name="projectId">
+                    <option th:each="project : ${projects}" th:value="${project.prName}+'%@%'+${project.prId}" th:text="${project.prName}"></option>
+                </select>
+
             </div>
             <div class="checkbox" th:each="task: ${tasks}">
                 <label>
-                    <input type="checkbox" id="taskId" name="taskId" th:text="${task.taName}" th:value="${task.taId}">
-                    <!--input type="hidden" id="taskId" name="taskId" -->
+                    <input type="checkbox" id="taskName" name="taskName" th:text="${task.taName}" th:value="${task.taName}+'%@%'+${task.taId}">
                 </label>
 
             </div>

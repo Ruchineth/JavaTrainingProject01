@@ -16,23 +16,29 @@ public class ProjectWithTaskController {
     ProjectWithTaskServiceImp projectWithTaskServiceImp;
 
     @RequestMapping(value = "/projectwithtasks",method = RequestMethod.POST)
-    @PreAuthorize(("hasAuthority('create_profile')"))
-    public void save(@RequestParam List<ProjectWithTask> projectWithTask){
-        System.out.println(projectWithTask);
+    @PreAuthorize("hasAuthority('create_profile')")
+    public List<ProjectWithTask> saveAll(@RequestBody List<ProjectWithTask> projectWithTask){
 
 
-        //return projectWithTaskServiceImp.save(projectWithTask);
+
+        return projectWithTaskServiceImp.saveAll(projectWithTask);
     }
-   /* @RequestMapping(value = "/tasks",method = RequestMethod.GET)
+
+    @RequestMapping(value = "/projectwithtasks/{id}", method = RequestMethod.GET)
+    @PreAuthorize("hasAuthority('read_profile')")
+    public List<String> findByEmployeeId(@PathVariable Integer id){
+        return projectWithTaskServiceImp.findByEmployeeId(id);
+    }
+
+
+    @RequestMapping(value = "/projectwithtaskwithemployee/{id}/{id1}",method = RequestMethod.GET)
     @PreAuthorize(("hasAuthority('read_profile')"))
-    public List<Task> getAllTask(){
-        return taskServiceImp.getAll();
+    public List<String> findTaskByEmployeeProject(@PathVariable Integer id,@PathVariable String id1){
+
+
+        Integer employeeId=id;
+        String projectName=id1;
+        return projectWithTaskServiceImp.findTaskByEmployeeProject(employeeId,projectName);
     }
 
-    @RequestMapping(value = "/tasks/{id}",method = RequestMethod.GET)
-    @PreAuthorize(("hasAuthority('read_profile')"))
-    public Task getTaskById(@PathVariable Integer id){
-        return taskServiceImp.getTaskById(id);
-    }
-*/
 }

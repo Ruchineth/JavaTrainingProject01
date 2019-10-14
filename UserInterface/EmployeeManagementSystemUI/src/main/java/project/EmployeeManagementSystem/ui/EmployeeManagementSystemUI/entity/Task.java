@@ -7,11 +7,10 @@ import javax.persistence.*;
 @Entity
 public class Task {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer taId;
     String taName;
-    @ManyToOne(cascade = CascadeType.ALL)@JoinColumn @JsonIgnore
-    Project project;
+
 
     public Integer getTaId() {
         return taId;
@@ -29,11 +28,5 @@ public class Task {
         this.taName = taName;
     }
 
-    public Project getProject() {
-        return project;
-    }
 
-    public void setProject(Project project) {
-        this.project = project;
-    }
 }

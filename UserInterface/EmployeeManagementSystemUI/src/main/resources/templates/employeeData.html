@@ -73,6 +73,7 @@
                 <td><span th:text="${employee.emFirstName}"></span></td>
                 <td><span th:text="${employee.emLastName}"></span>
                 <td><span th:text="${employee.emNo}"></span> </td>
+                <td><a th:href="@{/employees/{id}(id=${employee.emId})}">View</a></td>
 
 
             </tr>
@@ -81,6 +82,9 @@
 
         </table>
     </div>
+    <footer>
+        <a th:href="@{/projectwithtask/{id}(id=${employee.emId})}" class="right">View Employee Projects</a>
+    </footer>
 
 
 
