@@ -2,7 +2,7 @@ server:
   port: 8083
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/emsDataDB?createDatabaseIfNotExist=true
+    url: jdbc:mysql://mysqlservice:3306/emsDataDB?createDatabaseIfNotExist=true
     username: root
     password: 1qaz2wsx@
     driver-class-name: com.mysql.jdbc.Driver
@@ -16,7 +16,7 @@ spring:
 security:
   oauth2:
     resource:
-      token-info-uri: http://localhost:9191/oauth/check_token
+      token-info-uri: http://authservice:9191/oauth/check_token
     client:
       client-id: web
       client-secret: web
